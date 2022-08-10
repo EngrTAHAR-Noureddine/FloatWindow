@@ -2,9 +2,7 @@ package com.example.notificationwidget
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
+import android.content.*
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,10 +12,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 
+
 class MainActivity : AppCompatActivity() {
 
     private var i:Int = 0
     private lateinit var dialog: AlertDialog
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
     }
+
+
+
+
 
 
     @SuppressLint("SetTextI18n")
@@ -79,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             builder.setCancelable(true)
             builder.setTitle("Screen Overlay Permission Needed")
             builder.setMessage("Enable 'Display over the App' from settings")
-            builder.setPositiveButton("Open Settings", DialogInterface.OnClickListener { dialog, which ->
+            builder.setPositiveButton("Open Settings", DialogInterface.OnClickListener { _, _ ->
                 val intent = Intent(
                     Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:$packageName")

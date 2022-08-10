@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">NotificationWidget</string>
     <string name="button">Button</string>
+    <string name="swipe">swipe</string>
+    <string name="scroll">scroll</string>
+    <string name="volume">volume</string>
+    <string name="power">power</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>

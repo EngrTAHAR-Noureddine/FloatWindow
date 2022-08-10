@@ -1,5 +1,6 @@
 package com.example.notificationwidget
 
+import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
 import android.graphics.PixelFormat
@@ -7,6 +8,7 @@ import android.os.Build
 import android.os.IBinder
 import android.view.*
 import android.widget.Button
+import androidx.annotation.RequiresApi
 
 
 class FloatingWindowApp : Service() {
@@ -15,12 +17,13 @@ class FloatingWindowApp : Service() {
     private lateinit var floatWindowParams: WindowManager.LayoutParams
     private var LAYOU_TYPE:Int? = null
     private lateinit var windowManager: WindowManager
-    //private  lateinit var window: Window
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
+    @SuppressLint("InflateParams")
     override fun onCreate() {
         super.onCreate()
 
@@ -35,7 +38,6 @@ class FloatingWindowApp : Service() {
 
         floatView = inflater.inflate(R.layout.floating_layout, null) as ViewGroup
 
-        var btn = floatView.findViewById<View>(R.id.button) as Button
 
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -50,9 +52,7 @@ class FloatingWindowApp : Service() {
             LAYOU_TYPE!!,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT,
-
             )
-
 
 
         floatWindowParams.gravity = Gravity.CENTER
@@ -62,11 +62,8 @@ class FloatingWindowApp : Service() {
 
         windowManager.addView(floatView, floatWindowParams)
 
-        //window.setWindowManager(windowManager, null, null)
 
-        //window.addContentView(floatView, floatWindowParams)
-
-
+        val btn = floatView.findViewById<View>(R.id.button) as Button
 
         btn.setOnClickListener {
             stopSelf()
@@ -113,6 +110,8 @@ class FloatingWindowApp : Service() {
 
 
         })
+
+
     }
 
     override fun onDestroy() {
