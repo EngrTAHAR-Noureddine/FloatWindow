@@ -46,15 +46,6 @@
             android:name=".FloatingWindowApp"
             tools:ignore="Instantiatable" />
 
-        <receiver
-            android:name=".MyBroadcastReceiver"
-            android:exported="true" >
-            <intent-filter>
-                <action
-                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
-                    tools:ignore="BatteryLife" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

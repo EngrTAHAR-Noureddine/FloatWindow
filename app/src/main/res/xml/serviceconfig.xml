@@ -2,6 +2,7 @@
 <accessibility-service
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:accessibilityFeedbackType="feedbackAllMask"
+    android:accessibilityEventTypes="typeGestureDetectionEnd|typeTouchInteractionStart|typeTouchInteractionEnd|typeTouchExplorationGestureEnd"
     android:accessibilityFlags="flagDefault"
     android:canRequestEnhancedWebAccessibility="true"
     android:notificationTimeout="100"
