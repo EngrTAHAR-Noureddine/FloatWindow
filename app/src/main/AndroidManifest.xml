@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.notificationwidget" >
+    package="com.example.notificationwidget">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.SUBSCRIBE_TO_KEYGUARD_LOCKED_STATE" />
@@ -15,12 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NotificationWidget"
-        tools:targetApi="31" >
-
-
+        tools:targetApi="31">
+        <activity
+            android:name=".ActivityInfo"
+            android:launchMode="singleTop"
+            android:showOnLockScreen="true"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +36,7 @@
             android:enabled="true"
             android:exported="true"
             android:label="My application"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
@@ -43,9 +46,10 @@
                 android:resource="@xml/serviceconfig" />
         </service>
         <service
+            android:launchMode="singleTop"
+            android:showOnLockScreen="true"
             android:name=".FloatingWindowApp"
             tools:ignore="Instantiatable" />
-
     </application>
 
 </manifest>

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <accessibility-service
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:accessibilityFeedbackType="feedbackAllMask"
-    android:accessibilityEventTypes="typeGestureDetectionEnd|typeTouchInteractionStart|typeTouchInteractionEnd|typeTouchExplorationGestureEnd"
+    android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFlags="flagDefault"
     android:canRequestEnhancedWebAccessibility="true"
+    android:canPerformGestures="true"
     android:notificationTimeout="100"
     android:packageNames="com.example.notificationwidget"
     android:canRetrieveWindowContent="true"
     android:canRequestTouchExplorationMode="true"
-    />
+    tools:ignore="UnusedAttribute" />

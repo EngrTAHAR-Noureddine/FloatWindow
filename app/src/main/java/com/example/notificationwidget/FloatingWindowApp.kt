@@ -3,12 +3,16 @@ package com.example.notificationwidget
 import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
 import android.view.*
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 
 
 class FloatingWindowApp : Service() {
@@ -21,6 +25,7 @@ class FloatingWindowApp : Service() {
     override fun onBind(p0: Intent?): IBinder? {
         return null
     }
+
 
     @RequiresApi(Build.VERSION_CODES.R)
     @SuppressLint("InflateParams")
@@ -50,7 +55,7 @@ class FloatingWindowApp : Service() {
             (width*0.55f).toInt(),
             (height*0.55f).toInt(),
             LAYOU_TYPE!!,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT,
             )
 
@@ -63,7 +68,9 @@ class FloatingWindowApp : Service() {
         windowManager.addView(floatView, floatWindowParams)
 
 
-        val btn = floatView.findViewById<View>(R.id.button) as Button
+
+        /*
+        val btn = floatView.findViewById<View>(R.id.iconBtn) as ImageView
 
         btn.setOnClickListener {
             stopSelf()
@@ -75,6 +82,7 @@ class FloatingWindowApp : Service() {
 
             startActivity(back)
         }
+        */
 
         floatView.setOnTouchListener( object : View.OnTouchListener {
 

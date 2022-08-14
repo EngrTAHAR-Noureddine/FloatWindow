@@ -8,4 +8,7 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+    <string name="todo">TODO</string>
+    <string name="information_content">Information Content</string>
+    <string name="hi_bro">HI BRO</string>
 </resources>

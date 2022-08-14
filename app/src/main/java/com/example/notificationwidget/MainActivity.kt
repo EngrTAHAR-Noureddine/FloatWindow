@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val text :TextView = findViewById(R.id.text_hello)
-
+/*
         text.setOnClickListener {
             text.text = "Hi number : $i"
             i++
@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
                 requestFloatingWindowPermission()
             }
         }
+
+ */
     }
 
     private fun isServiceRunning():Boolean{

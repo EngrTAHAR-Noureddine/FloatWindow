@@ -1,45 +1,36 @@
 package com.example.notificationwidget
 
-import android.accessibilityservice.AccessibilityGestureEvent
 import android.accessibilityservice.AccessibilityService
-import android.accessibilityservice.AccessibilityServiceInfo
 import android.annotation.SuppressLint
 import android.app.KeyguardManager
 import android.content.*
 import android.graphics.PixelFormat
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.*
 import android.view.accessibility.AccessibilityEvent
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 
 
 class AccessibilityService : AccessibilityService() {
     var mLayout: FrameLayout? = null
     private lateinit var windowManager : WindowManager
     private lateinit var lp : WindowManager.LayoutParams
-    private lateinit var screenOnOffReceiver: BroadcastReceiver
-
-
-    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-        println("hi im here")
-        if(event!=null) println("event action is : ${event.action}")
-    }
-
-
-    override fun onInterrupt() {}
+    private var screenOnOffReceiver: BroadcastReceiver? = null
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate() {
         super.onCreate()
-        println("THE RECEIVER ------ ")
-       // registerBroadcastReceiver()
-
+        registerBroadcastReceiver()
     }
 
     override fun onDestroy() {
-        println("BEFORE UNREGISTER RECEIVER")
-       // applicationContext.unregisterReceiver(screenOnOffReceiver)
+       if(screenOnOffReceiver != null) applicationContext.unregisterReceiver(screenOnOffReceiver)
+        screenOnOffReceiver = null
         println("THIS IS DESTROY")
         super.onDestroy()
     }
@@ -53,12 +44,16 @@ class AccessibilityService : AccessibilityService() {
         lp.type = WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY
         lp.format = PixelFormat.TRANSLUCENT
         lp.flags = lp.flags or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT
+        lp.width = 150 //WindowManager.LayoutParams.WRAP_CONTENT
+        lp.height = 150 //WindowManager.LayoutParams.WRAP_CONTENT
         lp.gravity = Gravity.CENTER
 
-        val inflater = LayoutInflater.from(this)
-        inflater.inflate(R.layout.floating_layout, mLayout)
+
+        mLayout?.background = ContextCompat.getDrawable(this, R.drawable.notif)
+
+
+         //val inflater = LayoutInflater.from(this)
+        //inflater.inflate(R.layout.floating_layout, mLayout)
 
         windowManager.addView(mLayout, lp)
 
@@ -93,6 +88,27 @@ class AccessibilityService : AccessibilityService() {
             }
 
         })
+
+
+        mLayout?.setOnClickListener {
+            println("click icon btn")
+            val intent = Intent(this, ActivityInfo::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            removeWindow()
+
+            startActivity(intent)
+        }
+
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    override fun onSystemActionsChanged() {
+        val preferences = this.getSharedPreferences("Docta", Context.MODE_PRIVATE)
+        if(preferences.getBoolean("runActivity", false)){
+            createWindow()
+            preferences.edit().putBoolean("runActivity", false).apply()
+        }
     }
 
     private fun removeWindow(){
@@ -100,6 +116,7 @@ class AccessibilityService : AccessibilityService() {
         if(mLayout?.windowToken != null){
             windowManager.removeView(mLayout)
             mLayout = null
+
         }
     }
 
@@ -107,35 +124,23 @@ class AccessibilityService : AccessibilityService() {
     @RequiresApi(Build.VERSION_CODES.R)
     @SuppressLint("ClickableViewAccessibility")
     override fun onServiceConnected() {
-        println("onServiceConnected")
-        val info : AccessibilityServiceInfo = this.serviceInfo
-        info.apply {
-            eventTypes = AccessibilityEvent.TYPE_GESTURE_DETECTION_END or AccessibilityEvent.TYPE_GESTURE_DETECTION_START
-        }
-
-        this.serviceInfo = info
         // -----------------------------------------------------------------------------------------------------
         createWindowOnLockScreen()
-
     }
 
     private fun createWindowOnLockScreen(){
         val keyguard = this.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
 
         if (keyguard.isKeyguardLocked) {
-           // if(mLayout == null) {
+            println("is locked")
+            if(mLayout == null) {
+                println("Create cause mLayout is null")
                 createWindow()
-           // }
+            }
         } else {
             println("is not locked")
             onDestroy()
         }
-    }
-/*
-    override fun onSystemActionsChanged() {
-        super.onSystemActionsChanged()
-        println("system action change")
-        createWindowOnLockScreen()
     }
 
     private fun registerBroadcastReceiver() {
@@ -169,6 +174,9 @@ class AccessibilityService : AccessibilityService() {
         }
         applicationContext.registerReceiver(screenOnOffReceiver, theFilter)
     }
-*/
+
+
+
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
+    override fun onInterrupt() {}
 }
-// disableSelf()
