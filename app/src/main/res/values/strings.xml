@@ -11,4 +11,8 @@
     <string name="todo">TODO</string>
     <string name="information_content">Information Content</string>
     <string name="hi_bro">HI BRO</string>
+    <string name="title">Les informations de patient</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="informations">Informations</string>
 </resources>

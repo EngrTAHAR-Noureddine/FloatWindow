@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/drawable/ic_basket.xml" value="0.2395" />
+        <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/drawable/ic_close.xml" value="0.2395" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/action_bar.xml" value="0.1390625" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/activity_info.xml" value="0.3625" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/activity_lockscreen.xml" value="0.3484375" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/activity_service_settings.xml" value="0.3484375" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/example_wdget.xml" value="0.17135416666666667" />
-        <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/floating_layout.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/floating_layout.xml" value="0.25" />
+        <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/fragment_contact_patient.xml" value="0.29375" />
+        <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/fragment_informations.xml" value="0.29375" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/layout/new_app_widget.xml" value="0.3625" />
         <entry key="..\:/Users/cleverZone/AndroidStudioProjects/NotificationWidget/app/src/main/res/xml/serviceconfig.xml" value="0.29743589743589743" />
       </map>
